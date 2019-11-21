@@ -1,10 +1,10 @@
 package in.resumuff.core.endpoints;
 
 import in.resumuff.core.entity.Resume;
-import in.resumuff.core.entity.action.UploadResume;
 import in.resumuff.core.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,13 +18,14 @@ public class ResumeController {
     @Autowired
     private ResumeService resumeService;
     
-    @PostMapping("/resume/upload")
-    public ResponseEntity<Resume> uploadResume(HttpSession session, UploadResume request){
+    @PostMapping(value = "/resume/upload", consumes = "multipart/form-data")
+    public ResponseEntity<Resume> uploadResume(@RequestParam("file") MultipartFile resumeFile,
+                                               @RequestParam("tags") int[] tags){
 //        Long uid = (Long)session.getAttribute("uid");
 //        if(uid == null)
 //            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         
-        Optional<Resume> storedResume = resumeService.storeResume(0, request.file, request.tags);
+        Optional<Resume> storedResume = resumeService.storeResume(0, resumeFile, tags);
         if(storedResume.isPresent()){
             return ResponseEntity.ok(storedResume.get());
         } else {

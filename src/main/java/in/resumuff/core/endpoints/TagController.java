@@ -22,7 +22,7 @@ public class TagController {
     }
     
     @GetMapping("/tag/get/{id}")
-    public ResponseEntity<Tag> createTag(@PathVariable long id){
+    public ResponseEntity<Tag> getTag(@PathVariable long id){
         return ResponseEntity.of(tagService.getTag(id));
     }
     

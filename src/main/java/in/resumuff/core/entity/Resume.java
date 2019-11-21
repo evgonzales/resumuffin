@@ -7,22 +7,25 @@ import javax.persistence.*;
 public class Resume {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", columnDefinition = "BIGINT")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long id;
     
-    @Column(name = "uid", columnDefinition = "BIGINT")
+    @Column(name = "uid", nullable = false)
     private long uid;
-    
-    @Column(name = "data", columnDefinition = "BYTEA")
+
+    @Lob
+    @Column(name = "data", nullable = false)
     private byte[] data;
     
-    @Column(name = "isImage", columnDefinition = "BOOLEAN")
+    @Column(name = "isImage", nullable = false)
     private boolean isImage;
     
-    @Column(name = "tags", columnDefinition = "INTEGER[]")
+    @Column(name = "tags", nullable = false)
     private int[] tagIds;
-    
+
+    public Resume(){}
+
     public Resume(long uid, byte[] data, boolean isImage, int[] tagIds){
         this.uid = uid;
         this.data = data;
