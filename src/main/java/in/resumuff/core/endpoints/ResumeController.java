@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
@@ -19,7 +20,8 @@ public class ResumeController {
     private ResumeService resumeService;
     
     @PostMapping(value = "/resume/upload", consumes = "multipart/form-data")
-    public ResponseEntity<Resume> uploadResume(@RequestParam("file") MultipartFile resumeFile,
+    public ResponseEntity<Resume> uploadResume(@ApiIgnore HttpSession session,
+                                               @RequestParam("file") MultipartFile resumeFile,
                                                @RequestParam("tags") int[] tags){
 //        Long uid = (Long)session.getAttribute("uid");
 //        if(uid == null)
