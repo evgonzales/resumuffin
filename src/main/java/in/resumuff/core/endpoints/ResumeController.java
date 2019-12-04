@@ -35,14 +35,14 @@ public class ResumeController {
         }
     }
     
-    @GetMapping("/resume/get/{id}")
-    public ResponseEntity<Resume> getResume(@PathVariable long id){
-        return ResponseEntity.of(resumeService.getResume(id));
-    }
-    
     @GetMapping("/resume/get/all")
     public Iterable<Resume> getResume(){
         return resumeService.getAllResumes();
+    }
+    
+    @GetMapping("/resume/get/{id}")
+    public ResponseEntity<Resume> getResume(@PathVariable long id){
+        return ResponseEntity.of(resumeService.getResume(id));
     }
 
 }
