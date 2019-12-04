@@ -40,5 +40,9 @@ public class ResumeService {
         return repository.findById(id);
     }
     
+    public Iterable<Resume> getAllResumes(){
+        return repository.findAll();
+    }
+    
 
 }
