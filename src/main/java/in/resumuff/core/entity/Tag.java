@@ -10,8 +10,8 @@ public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(readOnly = true)
     @Column(name = "id", nullable = false)
+    @ApiModelProperty(readOnly = true, hidden = true)
     private long id;
 
     @Column(name = "text", nullable = false, unique = true)

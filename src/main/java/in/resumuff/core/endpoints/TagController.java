@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class TagController {
     
@@ -25,5 +27,10 @@ public class TagController {
     public ResponseEntity<Tag> getTag(@PathVariable long id){
         return ResponseEntity.of(tagService.getTag(id));
     }
-    
+
+    @GetMapping("/tag/get/all")
+    public Iterable<Tag> getAllTags(){
+        return tagService.getAllTags();
+    }
+
 }
